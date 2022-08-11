@@ -6,6 +6,10 @@
     <meta name="theme-color" content="#000000" />
     <title>Task</title>
     <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
       .container {
         position: relative;
         background-color: whitesmoke;
@@ -40,17 +44,19 @@
         return Math.floor(Math.random() * n) + 1;
       };
 
+      const divSize = () => {
+        const widht = randomNumberGenerator(w/2);
+        const height = randomNumberGenerator(h/2);
+        return { widht, height };
+      };
+
       const divPosition = () => {
-        const top = randomNumberGenerator(h);
         const left = randomNumberGenerator(w);
+        const top = randomNumberGenerator(h);
         return { top, left };
       };
 
-      const divSize = () => {
-        const widht = randomNumberGenerator(w);
-        const height = randomNumberGenerator(h);
-        return { widht, height };
-      };
+
 
       const color = () => {
         const arr = ["#"];
@@ -63,15 +69,18 @@
 
       const newDivGenerator = () => {
         const newDiv = document.createElement("div");
+        const size = divSize();
+        const position = divPosition();
+        if(position.left +size.widht > w) position.left = w - size.widht; 
+        if(position.top +size.height > h) position.top = h - size.height;
         newDiv.style =  `
             background-color:${color()}; 
-            width:${divSize().widht}px;
-            height:${divSize().height}px;
+            width:${size.widht}px;
+            height:${size.height}px;
             position: absolute;
-            top: ${divPosition().top}px;
-            left: ${divPosition().left}px  `
+            top: ${position.top}px;
+            left: ${position.left}px `
         container.append(newDiv);
-        console.log("hello")
       };
 
       button.addEventListener("click", newDivGenerator);
