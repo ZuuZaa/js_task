@@ -61,16 +61,17 @@
         return arr.join("");
       };
 
-
       const newDivGenerator = () => {
         const newDiv = document.createElement("div");
-        newDiv.style.position = "absolute";
-        newDiv.style.top = `${divPosition().top}px`;
-        newDiv.style.left = `${divPosition().left}px`;
-        newDiv.style.backgroundColor = color();
-        newDiv.style.width = `${divSize().widht}px`;
-        newDiv.style.height = `${divSize().height}px`;
+        newDiv.style =  `
+            background-color:${color()}; 
+            width:${divSize().widht}px;
+            height:${divSize().height}px;
+            position: absolute;
+            top: ${divPosition().top}px;
+            left: ${divPosition().left}px  `
         container.append(newDiv);
+        console.log("hello")
       };
 
       button.addEventListener("click", newDivGenerator);
