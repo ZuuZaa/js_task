@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Task</title>
+    <style>
+      .container {
+        position: relative;
+        background-color: "#463187";
+        width: 100vw;
+        height: 100vh;
+      }
+      .btn {
+        position: absolute;
+        z-index: 3;
+      } 
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <button class="btn">Click Me</button>
+    </div>
+
+    <script>
+      const w = Math.max(
+        document.documentElement.clientWidth,
+        window.innerWidth || 0
+      );
+      const h = Math.max(
+        document.documentElement.clientHeight,
+        window.innerHeight || 0
+      );
+      const container = document.querySelector(".container");
+      const button = document.querySelector(".btn");
+
+      const randomNumberGenerator = (n) => {
+        return Math.floor(Math.random() * n) + 1;
+      };
+
+      const divPosition = () => {
+        const top = randomNumberGenerator(h);
+        const left = randomNumberGenerator(w);
+        return { top, left };
+      };
+
+      const divSize = () => {
+        const widht = randomNumberGenerator(w);
+        const height = randomNumberGenerator(h);
+        return { widht, height };
+      };
+
+      const color = () => {
+        const arr = ["#"];
+        for (let i = 0; i < 6; i++) {
+          const char = randomNumberGenerator(9);
+          arr.push(`${char}`);
+        }
+        return arr.join("");
+      };
+      const newDivGenerator = () => {
+        console.log("hello");
+      };
+
+      button.addEventListener("click", newDivGenerator);
+      console.log(divPosition());
+      console.log(divSize());
+      console.log(color());
+      console.log(w, h);
+    </script>
+  </body>
+</html>
