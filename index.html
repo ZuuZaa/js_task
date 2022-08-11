@@ -9,23 +9,45 @@
         body{
             margin: 0;
             padding: 0;
+        background-color: whitesmoke;
         }
       .container {
         position: relative;
-        background-color: whitesmoke;
         width: 100vw;
         height: 100vh;
       }
       .btn {
         position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         z-index: 3;
+        padding: 10px 20px;
+        letter-spacing: 3px;
+        font-size: 22px;
+        font-weight: 400;
+        border-radius: 5px;
+        border: none;
+        background-color: rgb(14, 94, 114);
+        color:rgb(255, 208, 143);
+        opacity: 0.6;
+      }
+      .info {
+        position: absolute;
+        bottom: 2%;
+        right: 2%;
+        z-index: 2;
+        color: rgb(14, 94, 114);
+        font-style: italic;
+        font-weight: 300;
       }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <button class="btn">Click Me</button>
+        <h3 class="info">Clik on Rectangle to Delet it</h3>
+      <button class="btn">Generate Random Rectangle</button>
     </div>
 
     <script>
@@ -41,12 +63,14 @@
       const button = document.querySelector(".btn");
 
       const randomNumberGenerator = (n) => {
-        return Math.floor(Math.random() * n) + 1;
+        return Math.floor(Math.random() * n);
       };
 
       const divSize = () => {
-        const widht = randomNumberGenerator(w/2);
-        const height = randomNumberGenerator(h/2);
+        let widht = randomNumberGenerator(w/2);
+        let height = randomNumberGenerator(h/2);
+        if(widht < 50) widht = 50;
+        if(height < 50) height = 50;
         return { widht, height };
       };
 
@@ -56,16 +80,18 @@
         return { top, left };
       };
 
-
-
       const color = () => {
         const arr = ["#"];
         for (let i = 0; i < 6; i++) {
-          const char = randomNumberGenerator(9);
+          const char = randomNumberGenerator(10);
           arr.push(`${char}`);
         }
         return arr.join("");
       };
+
+      const deleteDiv = (e) => {
+        e.target.style.display = "none";
+      }
 
       const newDivGenerator = () => {
         const newDiv = document.createElement("div");
@@ -80,6 +106,7 @@
             position: absolute;
             top: ${position.top}px;
             left: ${position.left}px `
+        newDiv.addEventListener("click", deleteDiv);
         container.append(newDiv);
       };
 
