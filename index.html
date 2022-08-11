@@ -15,7 +15,7 @@
       .btn {
         position: absolute;
         z-index: 3;
-      } 
+      }
     </style>
   </head>
 
@@ -60,15 +60,20 @@
         }
         return arr.join("");
       };
+
+
       const newDivGenerator = () => {
-        console.log("hello");
+        const newDiv = document.createElement("div");
+        newDiv.style.position = "absolute";
+        newDiv.style.top = `${divPosition().top}px`;
+        newDiv.style.left = `${divPosition().left}px`;
+        newDiv.style.backgroundColor = color();
+        newDiv.style.width = `${divSize().widht}px`;
+        newDiv.style.height = `${divSize().height}px`;
+        container.append(newDiv);
       };
 
       button.addEventListener("click", newDivGenerator);
-      console.log(divPosition());
-      console.log(divSize());
-      console.log(color());
-      console.log(w, h);
     </script>
   </body>
 </html>
