@@ -90,7 +90,7 @@
       };
 
       const deleteDiv = (e) => {
-        e.target.style.display = "none";
+        e.target.remove();
       }
 
       const newDivGenerator = () => {
@@ -105,7 +105,7 @@
             height:${size.height}px;
             position: absolute;
             top: ${position.top}px;
-            left: ${position.left}px `
+            left: ${position.left}px`
         newDiv.addEventListener("click", deleteDiv);
         container.append(newDiv);
       };
